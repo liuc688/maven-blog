@@ -1,8 +1,8 @@
-## 一、Maven 简介
+## 1. Maven 简介
 
-### 1、为什么学习 Maven
+### 1.1. 为什么学习 Maven
 
-#### 1.1、Maven 是一个依赖管理工具
+#### 1.1.1. Maven 是一个依赖管理工具
 
 ①jar 包的规模
 
@@ -475,11 +475,11 @@
 
 在 web 工程中，jar 包必须存放在指定位置：
 
-<img src='../image/image-20231021101825708.png' alt='' data-fancybox='gallery' style='aspect-ratio:456/463'/>
+<img src='../image/maven002.png' alt='' data-fancybox='gallery' style='aspect-ratio:456/463'/>
 
 在使用 Maven 之后，通过配置依赖(jar 包)的坐标，查找本地仓库中相应 jar 包，若本地仓库没有，则统一从镜像网站或中央仓库中下载：
 
-<img src='../image/image-20231021102831531.png' alt='' data-fancybox='gallery' style='aspect-ratio:1289/551'/>
+<img src='../image/maven003.png' alt='' data-fancybox='gallery' style='aspect-ratio:1289/551'/>
 
 ④jar 包之间的依赖
 
@@ -487,30 +487,30 @@
 
 下面是前面例子中 jar 包之间的依赖关系：
 
-<img src='../image/img006.ab4f2e31.png' alt='' data-fancybox='gallery' style='aspect-ratio:1916/2623'/>
+<img src='../image/maven004.png' alt='' data-fancybox='gallery' style='aspect-ratio:1916/2623'/>
 
 而实际上 jar 包之间的依赖关系是普遍存在的，如果要由程序员手动梳理无疑会增加极高的学习成本，而这些工作又对实现业务功能毫无帮助。
 
 而使用 Maven 则几乎不需要管理这些关系，极个别的地方调整一下即可，极大的减轻了我们的工作量。
 
-#### 1.2、Maven 是一个构建工具
+#### 1.1.2. Maven 是一个构建工具
 
 ① 你没有注意过的构建
 
 你可以不使用 Maven，但是构建必须要做。当我们使用 IDEA 进行开发时，构建是 IDEA 替我们做的。
 
-<img src='../image/image-20231021103758624.png' alt='' data-fancybox='gallery' style='aspect-ratio:1004/715'/>
+<img src='../image/maven005.png' alt='' data-fancybox='gallery' style='aspect-ratio:1004/715'/>
 
 ② 脱离 IDE 环境仍需构建
 
-<img src='../image/image.png' alt='' data-fancybox='gallery' style='aspect-ratio:911/466'/>
+<img src='../image/maven001.png' alt='' data-fancybox='gallery' style='aspect-ratio:911/466'/>
 
-#### 1.3、结论
+#### 1.1.3. 结论
 
 - **管理规模庞大的 jar 包，需要专门工具。**
 - **脱离 IDE 环境执行构建操作，需要专门工具。**
 
-### 2. Maven 介绍
+### 1.2. Maven 介绍
 
 <https://maven.apache.org/what-is-maven.html>
 
@@ -528,19 +528,19 @@ Maven 就是一个软件，掌握安装、配置、以及基本功能 **（项�
 
    Maven 可以管理项目的编译、测试、打包、部署等构建过程。通过实现标准的构建生命周期，Maven 可以确保每一个构建过程都遵循同样的规则和最佳实践。同时，Maven 的插件机制也使得开发者可以对构建过程进行扩展和定制。主动触发构建，只需要简单的命令操作即可。
 
-    <img src='../image/image_OSOE45UACw.png' alt='' data-fancybox='gallery' style='aspect-ratio:739/135'/>
+    <img src='../image/maven012.png' alt='' data-fancybox='gallery' style='aspect-ratio:739/135'/>
 
 **场景 1：** 例如我们项目需要第三方依赖如：Druid 连接池、MySQL 数据库驱动和 Jackson JSON 等处理。那么我们可以将想要的依赖项的信息编写到 Maven 工程的配置文件，Maven 就会自动下载并复制这些依赖项到项目中，无需自己导入 jar 包，管理 jar!
 
 **场景 2：** 项目完成开发，我们想要打成 war 部署到服务器中，使用 maven 的构建命令可以快速打包！节省大量时间！
 
-### 3. Maven 软件工作原理模型图（了解）
+### 1.3. Maven 软件工作原理模型图（了解）
 
-<img src='../image/image_6AVFQbaXLj.png' alt='' data-fancybox='gallery' style='aspect-ratio:682/438'/>
+<img src='../image/maven006.png' alt='' data-fancybox='gallery' style='aspect-ratio:682/438'/>
 
-## 二、Maven 安装和配置
+## 2. Maven 安装和配置
 
-### 1. Maven 安装
+### 2.1. Maven 安装
 
 <https://maven.apache.org/docs/history.html>
 
@@ -558,7 +558,7 @@ Maven 就是一个软件，掌握安装、配置、以及基本功能 **（项�
 
 **软件结构：**
 
-<img src='../image/image-20231021110800113.png' alt='' data-fancybox='gallery' style='aspect-ratio:592/160'/>
+<img src='../image/maven018.png' alt='' data-fancybox='gallery' style='aspect-ratio:592/160'/>
 
 **bin**：含有 Maven 的运行脚本
 
@@ -570,15 +570,15 @@ lib：含有 Maven 运行时所需要的 Java 类库
 
 LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要介绍
 
-### 2. Maven 环境配置
+### 2.2. Maven 环境配置
 
 1.  配置 MAVEN_HOME
 
-    <img src='../image/image-20231021110938230.png' alt='' data-fancybox='gallery' style='aspect-ratio:653/183'/>
+    <img src='../image/maven019.png' alt='' data-fancybox='gallery' style='aspect-ratio:653/183'/>
 
 2.  配置 Path
 
-    <img src='../image/image_xNL5Fg_ucf.png' alt='' data-fancybox='gallery' style='aspect-ratio:703/680'/>
+    <img src='../image/maven015.png' alt='' data-fancybox='gallery' style='aspect-ratio:703/680'/>
 
 3.  命令测试（cmd 窗口）
     ```bash
@@ -586,15 +586,13 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
     # 输出版本信息即可，如果错误，请仔细检查环境变量即可！
     ```
 
-### 3. Maven 功能配置
+### 2.3. Maven 功能配置
 
-> 我们需要需改**maven/conf/settings.xml**配置文件，来修改 maven 的一些默认配置。我们主要休要修改的有三个配置：
+> 我们需要需改 `maven/conf/settings.xml` 配置文件，来修改 `maven` 的一些默认配置。我们主要休要修改的有三个配置：
 >
-> 1.依赖本地缓存位置（本地仓库位置）
->
-> 2.maven 下载镜像
->
-> 3.maven 选用编译项目的 jdk 版本
+> 1. 依赖本地缓存位置（本地仓库位置）
+> 2. maven 下载镜像
+> 3. maven 选用编译项目的 jdk 版本
 
 1.  配置本地仓库地址
     ```xml
@@ -634,7 +632,7 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
     </profile>
     ```
 
-### 4. IDEA 配置本地 Maven 软件
+### 2.4. IDEA 配置本地 Maven 软件
 
 > 我们需要将配置好的 maven 软件，配置到 idea 开发工具中即可！ 注意：idea 工具默认自带 maven 配置软件，但是因为没有修改配置，建议替换成本地配置好的 maven！
 
@@ -648,9 +646,9 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
 
 2、一定保证 User settings file 对应之前修改的 settings.xml 的路径，若 不一致，选中 Override 复选框，手动选择配置文件
 
-## 三、基于 IDEA 创建 Maven 工程
+## 3. 基于 IDEA 创建 Maven 工程
 
-### 1. 概念梳理 Maven 工程的 GAVP
+### 3.1. 概念梳理 Maven 工程的 GAVP
 
 Maven 工程相对之前的项目，多出一组 gavp 属性，gav 需要我们在创建项目的时候指定，p 有默认值，我们先行了解下这组属性的含义：
 
@@ -688,72 +686,80 @@ GAV 遵循一下规则：
 
 ​ packaging 属性为 pom，代表不会打包，用来做继承的父工程。
 
-### 2. Idea 构建 Maven Java SE 工程
+### 3.2. Idea 构建 Maven Java SE 工程
 
 注意：此处省略了 version，直接给了一个默认值：**1.0-SNAPSHOT**
 
 自己后期可以在项目中随意修改！
 
-<img src='../image/image-20231021143559114.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
+<img src='../image/maven021.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
 
 创建工程之后，若第一次使用 maven，或者使用的是新的**本地仓库**，idea 右下角会出现以下进度条，表示 maven 正在下载相关插件，等待下载完毕，进度条消失即可
 
-<img src='../image/image-20231021145024505.png' alt='' data-fancybox='gallery' style='aspect-ratio:424/42'/>
+<img src='../image/maven022.png' alt='' data-fancybox='gallery' style='aspect-ratio:424/42'/>
 
 验证 maven 工程是否创建成功，当创建完毕 maven 工程之后，idea 中会自动打开 Maven 视图，如下图：
 
-<img src='../image/image-20231021145713433.png' alt='' data-fancybox='gallery' style='aspect-ratio:559/165'/>
+<img src='../image/maven023.png' alt='' data-fancybox='gallery' style='aspect-ratio:559/165'/>
 
-### 3. Idea 构建 Maven Java Web 工程
+### 3.3. Idea 构建 Maven Java Web 工程
 
-1.  手动创建
+1. 第一种方式：手动创建
 
-    1. 创建一个 maven 的 javase 工程
+   1. 创建一个 maven 的 javase 工程
 
-       <img src='../image/image-20231021150134082.png' alt='' data-fancybox='gallery' style='aspect-ratio:164/165'/>
+      <img src='../image/maven055.png' alt='' data-fancybox='gallery' style='aspect-ratio:1574/1333'/>
 
-    2. 修改 pom.xml 文件打包方式
+      <img src='../image/maven024.png' alt='' data-fancybox='gallery' style='aspect-ratio:887/351'/>
 
-       修改位置：项目下/pom.xml
+   2. 修改 `pom.xml` 文件打包方式
 
-       ```xml
-       <groupId>com.atguigu</groupId>
-       <artifactId>maven_web</artifactId>
-       <version>1.0-SNAPSHOT</version>
-       <!-- 新增一列打包方式packaging -->
-       <packaging>war</packaging>
-       ```
+      修改位置：项目下 `/pom.xml`
 
-    3. 设置**web 资源路径**和**web.xml 路径**
+      ```xml
+      <groupId>com.atguigu</groupId>
+      <artifactId>maven_web</artifactId>
+      <version>1.0-SNAPSHOT</version>
+      <!-- 新增一列打包方式 packaging -->
+      <packaging>war</packaging>
+      ```
 
-       点击 File-->Project Structure
+      然后刷新 `maven`；
 
-       <img src='../image/image-20231021151040531.png' alt='' data-fancybox='gallery' style='aspect-ratio:1024/845'/>
+   3. 设置 `web 资源路径` 和 `web.xml 路径`
 
-       <img src='../image/image-20231021151627161.png' alt='' data-fancybox='gallery' style='aspect-ratio:1024/845'/>
+      点击 File --> Project Structure
 
-       <img src='../image/image-20231021151753318.png' alt='' data-fancybox='gallery' style='aspect-ratio:574/180'/>
+      <img src='../image/maven025.png' alt='' data-fancybox='gallery' style='aspect-ratio:1024/845'/>
 
-    4. 刷新和校验
+      <img src='../image/maven026.png' alt='' data-fancybox='gallery' style='aspect-ratio:1024/845'/>
 
-       <img src='../image/image-20231021152310802.png' alt='' data-fancybox='gallery' style='aspect-ratio:457/216'/>
+      <img src='../image/maven027.png' alt='' data-fancybox='gallery' style='aspect-ratio:574/180'/>
 
-       <img src='../image/image-20231021151921943.png' alt='' data-fancybox='gallery' style='aspect-ratio:559/508'/>
+      :::warning 注意
+      注意上面这两个图，我们创建的 web.xml 文件的位置要和下面的 `Web Resource Directory` 一致才行。通常的：我们创建的 `web.xml` 路径中没有 `src\main\webapp`，需要我们手动添加一下。如上图，就手动添加了 `src\main\webapp` 路径。
+      :::
 
-2.  插件创建
+   4. 刷新和校验
 
-    1.  安装插件 JBLJavaToWeb
+      <img src='../image/maven029.png' alt='' data-fancybox='gallery' style='aspect-ratio:457/216'/>
 
-        file / settings / plugins / marketplace
+      <img src='../image/maven028.png' alt='' data-fancybox='gallery' style='aspect-ratio:559/508'/>
 
-        <img src='../image/image_cHUU_rABB6.png' alt='' data-fancybox='gallery' style='aspect-ratio:1216/862'/>
+2. 第二种方式：插件创建（更方便，更推荐）
 
-    2.  创建一个 javasemaven 工程
-    3.  右键、使用插件快速补全 web 项目
+   1. 安装插件 `JBLJavaToWeb`
 
-        <img src='../image/image_ZAPkM7VLgJ.png' alt='' data-fancybox='gallery' style='aspect-ratio:507/666'/>
+      file -> settings -> plugins -> marketplace
 
-### 4. Maven 工程项目结构说明
+      <img src='../image/maven009.png' alt='' data-fancybox='gallery' style='aspect-ratio:1216/862'/>
+
+   2. 先创建一个 javasemaven 工程，参考第一种方式。
+   3. 右键、使用插件快速补全 web 项目
+
+      <img src='../image/maven016.png' alt='' data-fancybox='gallery' style='aspect-ratio:507/666'/>
+
+### 3.4. Maven 工程项目结构说明
 
 Maven 是一个强大的构建工具，它提供一种标准化的项目结构，可以帮助开发者更容易地管理项目的依赖、构建、测试和发布等任务。以下是 Maven Web 程序的文件结构及每个文件的作用：
 
@@ -792,9 +798,9 @@ Maven 是一个强大的构建工具，它提供一种标准化的项目结构�
 - src/test/java：存放项目的测试代码。
 - src/test/resources：存放测试相关的资源文件，如测试配置文件等。
 
-## 四、基于 IDEA 进行 Maven 工程构建
+## 4. 基于 IDEA 进行 Maven 工程构建
 
-### 1. 构建概念和构建过程
+### 4.1. 构建概念和构建过程
 
 项目构建是指将源代码、依赖库和资源文件等转换成可执行或可部署的应用程序的过程，在这个过程中包括编译源代码、链接依赖库、打包和部署等多个步骤。
 
@@ -802,9 +808,9 @@ Maven 是一个强大的构建工具，它提供一种标准化的项目结构�
 
 同时，项目构建还能够将多个开发人员的代码汇合到一起，并能够自动化项目的构建和部署，大大降低了项目的出错风险和提高开发效率。常见的构建工具包括 Maven、Gradle、Ant 等。
 
-<img src='../image/image_REm5kk7DnX.png' alt='' data-fancybox='gallery' style='aspect-ratio:730/115'/>
+<img src='../image/maven013.png' alt='' data-fancybox='gallery' style='aspect-ratio:730/115'/>
 
-### 2. 命令方式项目构建
+### 4.2. 命令方式项目构建
 
 | 命令        | 描述                           |
 | ----------- | ------------------------------ |
@@ -844,9 +850,9 @@ mvn clean package
 mvn test
 ```
 
-### 3. 可视化方式项目构建
+### 4.3. 可视化方式项目构建
 
-<img src='../image/image-20231021153444864.png' alt='' data-fancybox='gallery' style='aspect-ratio:558/499'/>
+<img src='../image/maven030.png' alt='' data-fancybox='gallery' style='aspect-ratio:558/499'/>
 
 注意：打包（package）和安装（install）的区别是什么
 
@@ -854,7 +860,7 @@ mvn test
 
 安装是将当前工程所生成的 jar 或 war 文件，安装到本地仓库，会按照坐标保存到指定位置
 
-### 4. 构建插件、命令、生命周期命令之间关系
+### 4.4. 构建插件、命令、生命周期命令之间关系
 
 - **构建生命周期**
 
@@ -902,9 +908,9 @@ mvn test
 
   最终进行构建的是插件！
 
-## 五、基于 IDEA 进行 Maven 依赖管理
+## 5. 基于 IDEA 进行 Maven 依赖管理
 
-### 1. 依赖管理概念
+### 5.1. 依赖管理概念
 
 Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖管理能够帮助开发人员自动解决软件包依赖问题，使得开发人员能够轻松地将其他开发人员开发的模块或第三方框架集成到自己的应用程序或模块中，避免出现版本冲突和依赖缺失等问题。
 
@@ -912,7 +918,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
 总之，Maven 的依赖管理是 Maven 软件的一个核心功能之一，使得软件包依赖的管理和使用更加智能和方便，简化了开发过程中的工作，并提高了软件质量和可维护性。
 
-### 2. Maven 工程核心信息配置和解读（GAVP）
+### 5.2. Maven 工程核心信息配置和解读（GAVP）
 
 位置：pom.xml
 
@@ -935,7 +941,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 <packaging>jar/pom/war</packaging>
 ```
 
-### 3. Maven 工程依赖管理配置
+### 5.3. Maven 工程依赖管理配置
 
 位置：pom.xml
 
@@ -984,7 +990,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 </dependencies>
 ```
 
-### 4. 依赖范围
+### 5.4. 依赖范围
 
 通过设置坐标的依赖范围(scope)，可以设置 对应 jar 包的作用范围：编译环境、测试环境、运行环境
 
@@ -997,7 +1003,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 | system       | 系统依赖范围，其效果与 provided 的依赖范围一致。其用于添加非 Maven 仓库的本地依赖，通过依赖元素 dependency 中的 systemPath 元素指定本地依赖的路径。鉴于使用其会导致项目的可移植性降低，一般不推荐使用。          |
 | import       | 导入依赖范围，该依赖范围只能与 dependencyManagement 元素配合使用，其功能是将目标 pom.xml 文件中 dependencyManagement 的配置导入合并到当前 pom.xml 的 dependencyManagement 中。                                   |
 
-### 5. Maven 工程依赖下载失败错误解决（重点）
+### 5.5. Maven 工程依赖下载失败错误解决（重点）
 
 在使用 Maven 构建项目时，可能会发生依赖项下载错误的情况，主要原因有以下几种：
 
@@ -1023,7 +1029,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
     文件：
 
-    <img src='../image/image_m3iQtBLARz.png' alt='' data-fancybox='gallery' style='aspect-ratio:667/220'/>
+    <img src='../image/maven011.png' alt='' data-fancybox='gallery' style='aspect-ratio:667/220'/>
 
 4.  或者可以将清除**lastUpdated 文件**的操作写在一个脚本文件中，手动创建文件"clearLastUpdated.bat"，名字任意，但是后缀必须是 bat，将以下内容复制到文件中
 
@@ -1072,9 +1078,9 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
     GOTO MENU
     ```
 
-    <img src='../image/image-20231021161615994.png' alt='' data-fancybox='gallery' style='aspect-ratio:1219/574'/>
+    <img src='../image/maven031.png' alt='' data-fancybox='gallery' style='aspect-ratio:1219/574'/>
 
-### 6. Maven 工程 Build 构建配置
+### 5.6. Maven 工程 Build 构建配置
 
 项目构建是指将源代码、依赖库和资源文件等转换成可执行或可部署的应用程序的过程，在这个过程中包括编译源代码、链接依赖库、打包和部署等多个步骤。
 
@@ -1160,9 +1166,9 @@ dependencies 标签下引入开发需要的 jar 包！我们可以在 build/plug
 </build>
 ```
 
-## 六、Maven 依赖传递和依赖冲突
+## 6. Maven 依赖传递和依赖冲突
 
-### 1. Maven 依赖传递特性
+### 6.1. Maven 依赖传递特性
 
 **概念**
 
@@ -1202,11 +1208,11 @@ dependencies 标签下引入开发需要的 jar 包！我们可以在 build/plug
 
 分析：jackson 需要三个依赖
 
-<img src='../image/image_9ViibmeAvU.png' alt='' data-fancybox='gallery' style='aspect-ratio:1662/844'/>
+<img src='../image/maven008.png' alt='' data-fancybox='gallery' style='aspect-ratio:1662/844'/>
 
 依赖传递关系：data-bind 中，依赖其他两个依赖
 
-<img src='../image/image_Wl0Lsj_BLk.png' alt='' data-fancybox='gallery' style='aspect-ratio:2224/422'/>
+<img src='../image/maven014.png' alt='' data-fancybox='gallery' style='aspect-ratio:2224/422'/>
 
 最佳导入：直接可以导入 data-bind，自动依赖传递需要的依赖
 
@@ -1220,11 +1226,11 @@ dependencies 标签下引入开发需要的 jar 包！我们可以在 build/plug
 
 ```
 
-### 2. Maven 依赖冲突特性
+### 6.2. Maven 依赖冲突特性
 
 当直接引用或者间接引用出现了相同的 jar 包! 这时呢，一个项目就会出现相同的重复 jar 包，这就算作冲突！依赖冲突避免出现重复依赖，并且终止依赖传递！
 
-<img src='../image/image_km7_szBRUw.png' alt='' data-fancybox='gallery' style='aspect-ratio:797/210'/>
+<img src='../image/maven010.png' alt='' data-fancybox='gallery' style='aspect-ratio:797/210'/>
 
 maven 自动解决依赖冲突问题能力，会按照自己的原则，进行重复依赖选择。同时也提供了手动解决的冲突的方式，不过不推荐！
 
@@ -1282,9 +1288,9 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
     请问最终会导入哪些依赖和对应版本？
 
-## 七、Maven 工程继承和聚合关系
+## 7. Maven 工程继承和聚合关系
 
-### 1. Maven 工程继承关系
+### 7.1. Maven 工程继承关系
 
 1.  继承概念
 
@@ -1402,7 +1408,7 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
       </dependencies>
       ```
 
-### 2. Maven 工程聚合关系
+### 7.2. Maven 工程聚合关系
 
 1.  聚合概念
 
@@ -1434,9 +1440,9 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
     通过触发父工程构建命令、引发所有子模块构建！产生反应堆！
 
-## 八、Maven 私服
+## 8. Maven 私服
 
-### 1. Maven 私服简介
+### 8.1. Maven 私服简介
 
 ① 私服简介
 
@@ -1452,7 +1458,7 @@ Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内�
 
 此外，一些无法从外部仓库下载到的构件，也能从本地上传到私服供其他人使用。
 
-<img src='../image/image-20231021164631791.png' alt='' data-fancybox='gallery' style='aspect-ratio:973/428'/>
+<img src='../image/maven032.png' alt='' data-fancybox='gallery' style='aspect-ratio:973/428'/>
 
 ②Maven 私服的优势
 
@@ -1477,7 +1483,7 @@ Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内�
 2. JFrog 的 Artifactory
 3. Sonatype 的 Nexus（[ˈneksəs]）（当前最流行、使用最广泛）
 
-### 2. Nexus 下载安装
+### 8.2. Nexus 下载安装
 
 下载地址：https://help.sonatype.com/repomanager3/product-information/download
 
@@ -1487,38 +1493,38 @@ Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内�
 
 首页地址：http://localhost:8081/，8081 为默认端口号
 
-<img src='../image/img001.612496a3.png' alt='' data-fancybox='gallery' style='aspect-ratio:705/514'/>
+<img src='../image/maven007.png' alt='' data-fancybox='gallery' style='aspect-ratio:705/514'/>
 
-### 3. 初始设置
+### 8.3. 初始设置
 
-<img src='../image/img002.e1ac8197.png' alt='' data-fancybox='gallery' style='aspect-ratio:902/466'/>
+<img src='../image/maven047.png' alt='' data-fancybox='gallery' style='aspect-ratio:902/466'/>
 
-<img src='../image/image-20231031171116756.png' alt='' data-fancybox='gallery' style='aspect-ratio:318/298'/>
+<img src='../image/maven040.png' alt='' data-fancybox='gallery' style='aspect-ratio:318/298'/>
 
 这里参考提示：
 
 - 用户名：admin
 - 密码：查看 **E:\Server\nexus-3.61.0-02-win64\sonatype-work\nexus3\admin.password** 文件
 
-<img src='../image/image-20231031171242874.png' alt='' data-fancybox='gallery' style='aspect-ratio:320/301'/>
+<img src='../image/maven041.png' alt='' data-fancybox='gallery' style='aspect-ratio:320/301'/>
 
 继续执行初始化：
 
-<img src='../image/img005.4b81e5ab.png' alt='' data-fancybox='gallery' style='aspect-ratio:712/328'/>
+<img src='../image/maven048.png' alt='' data-fancybox='gallery' style='aspect-ratio:712/328'/>
 
-<img src='../image/img006.43ebb0ac.png' alt='' data-fancybox='gallery' style='aspect-ratio:716/328'/>
+<img src='../image/maven049.png' alt='' data-fancybox='gallery' style='aspect-ratio:716/328'/>
 
 匿名登录，启用还是禁用？由于启用匿名登录后，后续操作比较简单，这里我们演示禁用匿名登录的操作：
 
-<img src='../image/image-20231031171607378.png' alt='' data-fancybox='gallery' style='aspect-ratio:698/348'/>
+<img src='../image/maven042.png' alt='' data-fancybox='gallery' style='aspect-ratio:698/348'/>
 
 初始化完毕：
 
-<img src='../image/image-20231031171708085.png' alt='' data-fancybox='gallery' style='aspect-ratio:698/309'/>
+<img src='../image/maven043.png' alt='' data-fancybox='gallery' style='aspect-ratio:698/309'/>
 
-### 4. Nexus 上的各种仓库
+### 8.4. Nexus 上的各种仓库
 
-<img src='../image/img009.7f737ed7.png' alt='' data-fancybox='gallery' style='aspect-ratio:577/276'/>
+<img src='../image/maven050.png' alt='' data-fancybox='gallery' style='aspect-ratio:577/276'/>
 
 | 仓库类型 | 说明                                           |
 | -------- | ---------------------------------------------- |
@@ -1535,9 +1541,9 @@ Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内�
 
 初始状态下，这几个仓库都没有内容：
 
-<img src='../image/img010.e3573d0b.png' alt='' data-fancybox='gallery' style='aspect-ratio:868/252'/>
+<img src='../image/maven051.png' alt='' data-fancybox='gallery' style='aspect-ratio:868/252'/>
 
-### 5. 通过 Nexus 下载 jar 包
+### 8.5. 通过 Nexus 下载 jar 包
 
 修改本地 maven 的核心配置文件 settings.xml，设置新的本地仓库地址
 
@@ -1559,9 +1565,9 @@ Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内�
 
 这里的 url 标签是这么来的：
 
-<img src='../image/img012.5a3b1f11.png' alt='' data-fancybox='gallery' style='aspect-ratio:777/280'/>
+<img src='../image/maven052.png' alt='' data-fancybox='gallery' style='aspect-ratio:777/280'/>
 
-<img src='../image/image-20231031172137288.png' alt='' data-fancybox='gallery' style='aspect-ratio:1062/388'/>
+<img src='../image/maven044.png' alt='' data-fancybox='gallery' style='aspect-ratio:1062/388'/>
 
 把上图中看到的地址复制出来即可。如果我们在前面允许了匿名访问，到这里就够了。但如果我们禁用了匿名访问，那么接下来我们还要继续配置 settings.xml：
 
@@ -1594,17 +1600,17 @@ mvn clean compile
 
 下载后，Nexus 服务器上就有了 jar 包：
 
-<img src='../image/img014.cc0e87c3.png' alt='' data-fancybox='gallery' style='aspect-ratio:286/684'/>
+<img src='../image/maven053.png' alt='' data-fancybox='gallery' style='aspect-ratio:286/684'/>
 
 若下载速度太慢，可以设置私服中中央仓库的地址为阿里云仓库地址
 
-<img src='../image/image-20231031175035345.png' alt='' data-fancybox='gallery' style='aspect-ratio:1362/651'/>
+<img src='../image/maven045.png' alt='' data-fancybox='gallery' style='aspect-ratio:1362/651'/>
 
 修改为：http://maven.aliyun.com/nexus/content/groups/public/
 
-<img src='../image/image-20231031175134745.png' alt='' data-fancybox='gallery' style='aspect-ratio:1363/649'/>
+<img src='../image/maven046.png' alt='' data-fancybox='gallery' style='aspect-ratio:1363/649'/>
 
-### 6. 将 jar 包部署到 Nexus
+### 8.6. 将 jar 包部署到 Nexus
 
 maven 工程中配置：
 
@@ -1634,9 +1640,9 @@ mvn deploy
 > [INFO] Reactor Summary:
 > [INFO] > [INFO] demo-imperial-court-ms-show 1.0-SNAPSHOT ........... SUCCESS [ 1.875 s] > [INFO] demo09-base-entity ................................. SUCCESS [ 21.883 s] > [INFO] demo10-base-util ................................... SUCCESS [ 0.324 s] > [INFO] demo08-base-api .................................... SUCCESS [ 1.171 s] > [INFO] demo01-imperial-court-gateway ...................... SUCCESS [ 0.403 s] > [INFO] demo02-user-auth-center ............................ SUCCESS [ 2.932 s] > [INFO] demo03-emp-manager-center .......................... SUCCESS [ 0.312 s] > [INFO] demo04-memorials-manager-center .................... SUCCESS [ 0.362 s] > [INFO] demo05-working-manager-center ...................... SUCCESS [ 0.371 s] > [INFO] demo06-mysql-data-provider ......................... SUCCESS [ 6.779 s] > [INFO] demo07-redis-data-provider 1.0-SNAPSHOT ............ SUCCESS [ 0.273 s]
 
-<img src='../image/img015.b413af9d.png' alt='' data-fancybox='gallery' style='aspect-ratio:365/457'/>
+<img src='../image/maven054.png' alt='' data-fancybox='gallery' style='aspect-ratio:365/457'/>
 
-### 7. 引用别人部署的 jar 包
+### 8.7. 引用别人部署的 jar 包
 
 maven 工程中配置：
 
@@ -1656,11 +1662,11 @@ maven 工程中配置：
 </repositories>
 ```
 
-## 九、Maven 综合案例
+## 9. Maven 综合案例
 
-### 1. 项目需求和结构分析
+### 9.1. 项目需求和结构分析
 
-<img src='../image/image123.png' alt='' data-fancybox='gallery' style='aspect-ratio:702/450'/>
+<img src='../image/maven017.png' alt='' data-fancybox='gallery' style='aspect-ratio:702/450'/>
 
 需求案例：搭建一个电商平台项目，该平台包括用户服务、订单服务、通用工具模块等。
 
@@ -1681,13 +1687,13 @@ maven 工程中配置：
    - commons-io 2.11.0
    - junit 5.9.2
 
-### 2. 项目搭建和统一构建
+### 9.2. 项目搭建和统一构建
 
-#### ① 父模块 (micro-shop)
+#### 9.2.1. 父模块 (micro-shop)
 
 创建工程：
 
-<img src='../image/image-20231023112630117.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
+<img src='../image/maven033.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
 
 pom.xml 配置：
 
@@ -1766,13 +1772,13 @@ pom.xml 配置：
 
 可选操作：删除 src 目录
 
-#### ② 通用模块 (common-service)
+#### 9.2.2. 通用模块 (common-service)
 
 创建工程：
 
-<img src='../image/image-20231023114531521.png' alt='' data-fancybox='gallery' style='aspect-ratio:718/786'/>
+<img src='../image/maven034.png' alt='' data-fancybox='gallery' style='aspect-ratio:718/786'/>
 
-<img src='../image/image-20231023114649705.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
+<img src='../image/maven035.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
 
 pom.xml 配置：
 
@@ -1825,13 +1831,13 @@ pom.xml 配置：
 </project>
 ```
 
-#### ③ 用户模块 (user-service)
+#### 9.2.3. 用户模块 (user-service)
 
 创建工程：
 
-<img src='../image/image-20231023115404302.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
+<img src='../image/maven036.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
 
-<img src='../image/image-20231023115707282.png' alt='' data-fancybox='gallery' style='aspect-ratio:343/780'/>
+<img src='../image/maven037.png' alt='' data-fancybox='gallery' style='aspect-ratio:343/780'/>
 
 pom.xml 配置：
 
@@ -1871,13 +1877,13 @@ pom.xml 配置：
 
 依赖传递结果：
 
-<img src='../image/image-20231023120621402.png' alt='' data-fancybox='gallery' style='aspect-ratio:483/339'/>
+<img src='../image/maven038.png' alt='' data-fancybox='gallery' style='aspect-ratio:483/339'/>
 
-#### ④ 订单模块 (order-service)
+#### 9.2.4. 订单模块 (order-service)
 
 创建工程，并使用插件转为 web 工程：
 
-<img src='../image/image-20231023120733029.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
+<img src='../image/maven039.png' alt='' data-fancybox='gallery' style='aspect-ratio:784/610'/>
 
 pom.xml 配置：
 
