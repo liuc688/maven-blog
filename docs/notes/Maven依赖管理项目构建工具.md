@@ -822,11 +822,15 @@ Maven 是一个强大的构建工具，它提供一种标准化的项目结构�
 | mvn site    | 生成站点                       |
 | mvn test    | 执行测试源码                   |
 
-war 包打包插件和 jdk 版本不匹配：pom.xml 添加以下代码即可
+在包含 `pom.xml` 的文件夹路径下执行命令：
+
+<img src='../image/maven056.png' alt='' data-fancybox='gallery' style='aspect-ratio:1757/350'/>
+
+`war` 包打包插件和 `jdk` 版本不匹配：`pom.xml` 添加以下代码即可。
 
 ```xml
 <build>
-    <!-- jdk17 和 war包版本插件不匹配 -->
+    <!-- jdk17 和 war 包版本插件不匹配 -->
     <plugins>
         <plugin>
             <groupId>org.apache.maven.plugins</groupId>
