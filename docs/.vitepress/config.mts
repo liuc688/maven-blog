@@ -19,7 +19,10 @@ export default defineConfig({
       {
         text: '尚硅谷 Maven',
         items: [
-          { text: '第一章 概述', link: '/notes/Maven依赖管理项目构建工具' },
+          {
+            text: 'Maven依赖管理项目构建工具',
+            link: '/notes/Maven依赖管理项目构建工具',
+          },
         ],
       },
     ],
