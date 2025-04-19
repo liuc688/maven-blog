@@ -841,16 +841,44 @@ Maven 是一个强大的构建工具，它提供一种标准化的项目结构�
 </build>
 ```
 
+:::warning 注意
+测试类中，测试类需要以 Test 开头或者以 Test 结尾；测试方法需要以 test 开头。
+:::
+
+```java
+package com.atguigu.maven;
+
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+/**
+ * ClassName: MavenTest
+ * Package: com.atguigu.maven
+ * Description: 测试类需要以 Test 开头或者以 Test 结尾
+ * 测试方法需要以 test 开头
+ */
+public class MavenTest {
+    @Test
+    public void testAssert() {
+        int a = 10;
+        int b = 20;
+        Assertions.assertEquals(a + b, 30); // 测试 a + b 是否等于 30
+    }
+}
+```
+
+<img src='../image/maven057.png' alt='' data-fancybox='gallery' style='aspect-ratio:2475/963'/>
+
 命令触发练习：
 
 ```bash
 mvn 命令 命令
 
-#清理
+# 清理
 mvn clean
-#清理，并重新打包
+# 清理，并重新打包
 mvn clean package
-#执行测试代码
+# 执行测试代码
 mvn test
 ```
 

@@ -10,10 +10,7 @@ export default defineConfig({
     search: {
       provider: 'local',
     },
-    nav: [
-      { text: 'Home', link: '/' },
-      { text: '尚硅谷 Maven', link: '/notes/Maven依赖管理项目构建工具' },
-    ],
+    nav: [{ text: '尚硅谷 Maven', link: '/notes/Maven依赖管理项目构建工具' }],
 
     sidebar: [
       {
