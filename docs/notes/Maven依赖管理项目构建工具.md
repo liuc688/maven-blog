@@ -638,7 +638,7 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
 
 选择本地 maven 软件
 
-<img src='../image/image-20231021112046512.png' alt='' data-fancybox='gallery' style='aspect-ratio:982/713'/>
+<img src='../image/maven020.png' alt='' data-fancybox='gallery' style='aspect-ratio:982/713'/>
 
 **注意**：
 
