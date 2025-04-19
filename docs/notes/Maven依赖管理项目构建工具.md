@@ -898,6 +898,36 @@ mvn clean package
 </build>
 ```
 
+刷新 `maven` 工程，下载插件。
+
+<img src='../image/maven-0060.png' alt='' data-fancybox='gallery' style='aspect-ratio:1822/1120'/>
+
+等待下载完毕，然后再次执行打包操作即可。
+
+<img src='../image/maven-0061.png' alt='' data-fancybox='gallery' style='aspect-ratio:2439/1508'/>
+
+#### 4.2.6. 安装
+
+命令是 `mvn install`，执行该命令后，会将当前工程所生成的 `jar` 或 `war` 文件，安装到本地仓库，会按照坐标保存到指定位置。
+
+比如说我们想要在 `web` 工程中使用我们写的 `jar` 包，那么我们就可以将 `jar` 包安装到本地仓库，然后在 web 工程中引入该 `jar` 包即可。
+
+<img src='../image/maven-0062.png' alt='' data-fancybox='gallery' style='aspect-ratio:2307/1221'/>
+
+在 web 项目中的 `pom.xml` 中添加依赖：
+
+<img src='../image/maven-0063.png' alt='' data-fancybox='gallery' style='aspect-ratio:1731/1190'/>
+
+#### 4.2.7. 安装的 jar 包在本地仓库的位置
+
+我们可以根据 `pom.xml` 中的坐标，在本地仓库中找到对应的 `jar` 包。
+
+<img src='../image/maven-0064.png' alt='' data-fancybox='gallery' style='aspect-ratio:1510/607'/>
+
+<img src='../image/maven-0065.png' alt='' data-fancybox='gallery' style='aspect-ratio:1801/653'/>
+
+这个非常重要，如果后期我们在下载 jar 的时候，发生了网络错误，我们需要先将这里下载的不完整的 jar 包删除，然后重新下载。
+
 ### 4.3. 可视化方式项目构建
 
 <img src='../image/maven-0030.png' alt='' data-fancybox='gallery' style='aspect-ratio:558/499'/>
