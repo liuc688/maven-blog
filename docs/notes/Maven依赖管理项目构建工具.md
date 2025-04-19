@@ -932,11 +932,12 @@ mvn clean package
 
 <img src='../image/maven-0030.png' alt='' data-fancybox='gallery' style='aspect-ratio:558/499'/>
 
-注意：打包（package）和安装（install）的区别是什么
+1. 注意：打包（`package`）和安装（`install`）的区别是什么
 
-打包是将工程打成 jar 或 war 文件，保存在 target 目录下
+   - 打包是将工程打成 `jar` 或 `war` 文件，保存在 `target` 目录下。
+   - 安装是将当前工程所生成的 `jar` 或 `war` 文件，安装到本地仓库，会按照坐标保存到指定位置。
 
-安装是将当前工程所生成的 jar 或 war 文件，安装到本地仓库，会按照坐标保存到指定位置
+2. 上图中的 `Plugins` 中的插件（jar 包），就是来支持 `Maven` 生命周期对应的命令的。
 
 ### 4.4. 构建插件、命令、生命周期命令之间关系
 
@@ -966,13 +967,13 @@ mvn clean package
 
   **构建周期作用：会简化构建过程**
 
-  例如：项目打包 mvn clean package 即可。&#x20;
+  例如：项目打包 `mvn clean package` 即可。
 
   主要两个构建生命周期：
 
   - 清理周期：主要是对项目编译生成文件进行清理
 
-    包含命令：clean&#x20;
+    包含命令：clean;
 
 - 默认周期：定义了真正构件时所需要执行的所有步骤，它是生命周期中最核心的部分
 
@@ -994,7 +995,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
 我们通过定义 POM 文件，Maven 能够自动解析项目的依赖关系，并通过 Maven **仓库自动**下载和管理依赖，从而避免了手动下载和管理依赖的繁琐工作和可能引发的版本冲突问题。
 
-总之，Maven 的依赖管理是 Maven 软件的一个核心功能之一，使得软件包依赖的管理和使用更加智能和方便，简化了开发过程中的工作，并提高了软件质量和可维护性。
+总之 Maven 的依赖管理是 Maven 软件的一个核心功能之一，使得软件包依赖的管理和使用更加智能和方便，简化了开发过程中的工作，并提高了软件质量和可维护性。
 
 ### 5.2. Maven 工程核心信息配置和解读（GAVP）
 
@@ -1003,18 +1004,19 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 ```xml
 <!-- 模型版本 -->
 <modelVersion>4.0.0</modelVersion>
-<!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven会将该项目打成的jar包放本地路径：/com/companyname/project-group -->
+<!-- 公司或者组织的唯一标志，并且配置时生成的路径也是由此生成， 如com.companyname.project-group，maven 会将该项目打成的 jar 包放本地路径：/com/companyname/project-group -->
 <groupId>com.companyname.project-group</groupId>
-<!-- 项目的唯一ID，一个groupId下面可能多个项目，就是靠artifactId来区分的 -->
+<!-- 项目的唯一 ID，一个 groupId 下面可能多个项目，就是靠 artifactId 来区分的 -->
 <artifactId>project</artifactId>
 <!-- 版本号 -->
 <version>1.0.0</version>
 
-<!--打包方式
+<!--
+  打包方式：
     默认：jar
-    jar指的是普通的java项目打包方式！ 项目打成jar包！
-    war指的是web项目打包方式！项目打成war包！
-    pom不会讲项目打包！这个项目作为父工程，被其他工程聚合或者继承！后面会讲解两个概念
+    jar 指的是普通的 java 项目打包方式！ 项目打成 jar 包！
+    war 指的是 web 项目打包方式！项目打成 war 包！
+    pom 不会讲项目打包！这个项目作为父工程，被其他工程聚合或者继承！后面会讲解两个概念
 -->
 <packaging>jar/pom/war</packaging>
 ```
@@ -1027,11 +1029,11 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
 ```xml
 <!--
-   通过编写依赖jar包的gav必要属性，引入第三方依赖！
-   scope属性是可选的，可以指定依赖生效范围！
+   通过编写依赖 jar 包的 gav 必要属性，引入第三方依赖！
+   scope 属性是可选的，可以指定依赖生效范围！
    依赖信息查询方式：
-      1. maven仓库信息官网 https://mvnrepository.com/
-      2. mavensearch插件搜索
+      1. maven 仓库信息官网 https://mvnrepository.com/
+      2. mavensearch 插件搜索
  -->
 <dependencies>
     <!-- 引入具体的依赖包 -->
@@ -1051,9 +1053,9 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 ```xml
 <!--声明版本-->
 <properties>
-  <!--命名随便,内部制定版本号即可！-->
+  <!--命名随便，内部制定版本号即可！-->
   <junit.version>4.12</junit.version>
-  <!-- 也可以通过 maven规定的固定的key，配置maven的参数！如下配置编码格式！-->
+  <!-- 也可以通过 maven 规定的固定的 key，配置 maven 的参数！如下配置编码格式！-->
   <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 </properties>
@@ -1062,8 +1064,10 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
   <dependency>
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
-    <!--引用properties声明版本 -->
+    <!--引用 properties 声明版本 -->
     <version>${junit.version}</version>
+    <!-- 依赖范围：测试范围 -->
+    <scope>test</scope>
   </dependency>
 </dependencies>
 ```
@@ -1072,14 +1076,14 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
 通过设置坐标的依赖范围(scope)，可以设置 对应 jar 包的作用范围：编译环境、测试环境、运行环境
 
-| 依赖范围     | 描述                                                                                                                                                                                                             |
-| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **compile**  | 编译依赖范围，scope 元素的缺省值。使用此依赖范围的 Maven 依赖，对于三种 classpath 均有效，即该 Maven 依赖在上述三种 classpath 均会被引入。例如，log4j 在编译、测试、运行过程都是必须的。                         |
-| **test**     | 测试依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath 有效。例如，Junit 依赖只有在测试阶段才需要。                                                                                                       |
-| **provided** | 已提供依赖范围。使用此依赖范围的 Maven 依赖，只对编译 classpath 和测试 classpath 有效。例如，servlet-api 依赖对于编译、测试阶段而言是需要的，但是运行阶段，由于外部容器已经提供，故不需要 Maven 重复引入该依赖。 |
-| runtime      | 运行时依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath、运行 classpath 有效。例如，JDBC 驱动实现依赖，其在编译时只需 JDK 提供的 JDBC 接口即可，只有测试、运行阶段才需要实现了 JDBC 接口的驱动。         |
-| system       | 系统依赖范围，其效果与 provided 的依赖范围一致。其用于添加非 Maven 仓库的本地依赖，通过依赖元素 dependency 中的 systemPath 元素指定本地依赖的路径。鉴于使用其会导致项目的可移植性降低，一般不推荐使用。          |
-| import       | 导入依赖范围，该依赖范围只能与 dependencyManagement 元素配合使用，其功能是将目标 pom.xml 文件中 dependencyManagement 的配置导入合并到当前 pom.xml 的 dependencyManagement 中。                                   |
+| 依赖范围                              | 描述                                                                                                                                                                                                             |
+| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class='no-wrap'>compile</span>  | 编译依赖范围，scope 元素的缺省值。使用此依赖范围的 Maven 依赖，对于三种 classpath 均有效，即该 Maven 依赖在上述三种 classpath 均会被引入。例如，log4j 在编译、测试、运行过程都是必须的。                         |
+| test                                  | 测试依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath 有效。例如，Junit 依赖只有在测试阶段才需要。                                                                                                       |
+| <span class='no-wrap'>provided</span> | 已提供依赖范围。使用此依赖范围的 Maven 依赖，只对编译 classpath 和测试 classpath 有效。例如，servlet-api 依赖对于编译、测试阶段而言是需要的，但是运行阶段，由于外部容器已经提供，故不需要 Maven 重复引入该依赖。 |
+| <span class='no-wrap'>runtime</span>  | 运行时依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath、运行 classpath 有效。例如，JDBC 驱动实现依赖，其在编译时只需 JDK 提供的 JDBC 接口即可，只有测试、运行阶段才需要实现了 JDBC 接口的驱动。         |
+| system                                | 系统依赖范围，其效果与 provided 的依赖范围一致。其用于添加非 Maven 仓库的本地依赖，通过依赖元素 dependency 中的 systemPath 元素指定本地依赖的路径。鉴于使用其会导致项目的可移植性降低，一般不推荐使用。          |
+| import                                | 导入依赖范围，该依赖范围只能与 dependencyManagement 元素配合使用，其功能是将目标 pom.xml 文件中 dependencyManagement 的配置导入合并到当前 pom.xml 的 dependencyManagement 中。                                   |
 
 ### 5.5. Maven 工程依赖下载失败错误解决（重点）
 
