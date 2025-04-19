@@ -826,21 +826,6 @@ Maven 是一个强大的构建工具，它提供一种标准化的项目结构�
 
 <img src='../image/maven-0056.png' alt='' data-fancybox='gallery' style='aspect-ratio:1757/350'/>
 
-`war` 包打包插件和 `jdk` 版本不匹配：`pom.xml` 添加以下代码即可。
-
-```xml
-<build>
-    <!-- jdk17 和 war 包版本插件不匹配 -->
-    <plugins>
-        <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <version>3.2.2</version>
-        </plugin>
-    </plugins>
-</build>
-```
-
 #### 4.2.1. 测试类的命名规范
 
 :::warning 命名规范
@@ -893,6 +878,25 @@ mvn clean package
 #### 4.2.4. 打包
 
 <img src='../image/maven-0059.png' alt='' data-fancybox='gallery' style='aspect-ratio:2297/1261'/>
+
+上面测试的是 `java` 工程，因此执行打包操作后，打成的是 `jar` 包，如果是 `web` 工程，执行打包操作后，打成的是 `war` 包。
+
+#### 4.2.5. 打 war 包注意事项
+
+`war` 包打包插件和 `jdk` 版本不匹配：`pom.xml` 添加以下代码即可。
+
+```xml
+<build>
+    <!-- jdk17 和 war 包版本插件不匹配 -->
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <version>3.2.2</version>
+        </plugin>
+    </plugins>
+</build>
+```
 
 ### 4.3. 可视化方式项目构建
 
