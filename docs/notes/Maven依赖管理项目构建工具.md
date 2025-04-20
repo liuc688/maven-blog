@@ -542,7 +542,7 @@ Maven 就是一个软件，掌握安装、配置、以及基本功能 **（项�
 
 ### 2.1. Maven 安装
 
-<https://maven.apache.org/docs/history.html>
+https://maven.apache.org/docs/history.html
 
 各个工具选用版本：
 
@@ -551,6 +551,12 @@ Maven 就是一个软件，掌握安装、配置、以及基本功能 **（项�
 | Maven | 3.8.8  |
 | JDK   | 17     |
 | IDEA  | 2022.2 |
+
+> 如果上面给的地址找不到 `3.8.8` 版本的 Maven 话，可以直接点击下面的地址：
+>
+> https://maven.apache.org/download.cgi
+>
+> <img src='../image/maven-0068.png' alt='' data-fancybox='gallery' style='aspect-ratio:3024/1072'/>
 
 **安装条件：** maven 需要本机安装 java 环境、必需包含 java_home 环境变量！
 
@@ -607,7 +613,7 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
     ```
 2.  配置国内阿里镜像
     ```xml
-    <!--在mirrors节点(标签)下添加中央仓库镜像 160行附近-->
+    <!--在 mirrors 节点(标签)下添加中央仓库镜像 160 行附近-->
     <mirror>
         <id>alimaven</id>
         <name>aliyun maven</name>
@@ -617,7 +623,7 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
     ```
 3.  配置 jdk17 版本项目构建
     ```xml
-    <!--在profiles节点(标签)下添加jdk编译版本 268行附近-->
+    <!--在 profiles 节点(标签)下添加 jdk 编译版本 268 行附近-->
     <profile>
         <id>jdk-17</id>
         <activation>
@@ -631,6 +637,299 @@ LICENSE、NOTICE、README.txt：针对 Maven 版本，第三方软件等简要�
         </properties>
     </profile>
     ```
+
+> 全部的 settings.xml 配置文件可以参考：
+
+:::details 全部的 `settings.xml` 配置文件可以参考
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Licensed to the Apache Software Foundation (ASF) under one
+or more contributor license agreements.  See the NOTICE file
+distributed with this work for additional information
+regarding copyright ownership.  The ASF licenses this file
+to you under the Apache License, Version 2.0 (the
+"License"); you may not use this file except in compliance
+with the License.  You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing,
+software distributed under the License is distributed on an
+"AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+KIND, either express or implied.  See the License for the
+specific language governing permissions and limitations
+under the License.
+-->
+
+<!--
+ | This is the configuration file for Maven. It can be specified at two levels:
+ |
+ |  1. User Level. This settings.xml file provides configuration for a single user,
+ |                 and is normally provided in ${user.home}/.m2/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -s /path/to/user/settings.xml
+ |
+ |  2. Global Level. This settings.xml file provides configuration for all Maven
+ |                 users on a machine (assuming they're all using the same Maven
+ |                 installation). It's normally provided in
+ |                 ${maven.conf}/settings.xml.
+ |
+ |                 NOTE: This location can be overridden with the CLI option:
+ |
+ |                 -gs /path/to/global/settings.xml
+ |
+ | The sections in this sample file are intended to give you a running start at
+ | getting the most out of your Maven installation. Where appropriate, the default
+ | values (values used when the setting is not specified) are provided.
+ |
+ |-->
+<settings xmlns="http://maven.apache.org/SETTINGS/1.2.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.2.0 https://maven.apache.org/xsd/settings-1.2.0.xsd">
+  <!-- localRepository
+   | The path to the local repository maven will use to store artifacts.
+   |
+   | Default: ${user.home}/.m2/repository
+  <localRepository>/path/to/local/repo</localRepository>
+  -->
+  <localRepository>D:\maven-repository</localRepository>
+
+  <!-- interactiveMode
+   | This will determine whether maven prompts you when it needs input. If set to false,
+   | maven will use a sensible default value, perhaps based on some other setting, for
+   | the parameter in question.
+   |
+   | Default: true
+  <interactiveMode>true</interactiveMode>
+  -->
+
+  <!-- offline
+   | Determines whether maven should attempt to connect to the network when executing a build.
+   | This will have an effect on artifact downloads, artifact deployment, and others.
+   |
+   | Default: false
+  <offline>false</offline>
+  -->
+
+  <!-- pluginGroups
+   | This is a list of additional group identifiers that will be searched when resolving plugins by their prefix, i.e.
+   | when invoking a command line like "mvn prefix:goal". Maven will automatically add the group identifiers
+   | "org.apache.maven.plugins" and "org.codehaus.mojo" if these are not already contained in the list.
+   |-->
+  <pluginGroups>
+    <!-- pluginGroup
+     | Specifies a further group identifier to use for plugin lookup.
+    <pluginGroup>com.your.plugins</pluginGroup>
+    -->
+  </pluginGroups>
+
+  <!-- proxies
+   | This is a list of proxies which can be used on this machine to connect to the network.
+   | Unless otherwise specified (by system property or command-line switch), the first proxy
+   | specification in this list marked as active will be used.
+   |-->
+  <proxies>
+    <!-- proxy
+     | Specification for one proxy, to be used in connecting to the network.
+     |
+    <proxy>
+      <id>optional</id>
+      <active>true</active>
+      <protocol>http</protocol>
+      <username>proxyuser</username>
+      <password>proxypass</password>
+      <host>proxy.host.net</host>
+      <port>80</port>
+      <nonProxyHosts>local.net|some.host.com</nonProxyHosts>
+    </proxy>
+    -->
+  </proxies>
+
+  <!-- servers
+   | This is a list of authentication profiles, keyed by the server-id used within the system.
+   | Authentication profiles can be used whenever maven must make a connection to a remote server.
+   |-->
+  <servers>
+    <!-- server
+     | Specifies the authentication information to use when connecting to a particular server, identified by
+     | a unique name within the system (referred to by the 'id' attribute below).
+     |
+     | NOTE: You should either specify username/password OR privateKey/passphrase, since these pairings are
+     |       used together.
+     |
+    <server>
+      <id>deploymentRepo</id>
+      <username>repouser</username>
+      <password>repopwd</password>
+    </server>
+    -->
+
+    <!-- Another sample, using keys to authenticate.
+    <server>
+      <id>siteServer</id>
+      <privateKey>/path/to/private/key</privateKey>
+      <passphrase>optional; leave empty if not used.</passphrase>
+    </server>
+    -->
+  </servers>
+
+  <!-- mirrors
+   | This is a list of mirrors to be used in downloading artifacts from remote repositories.
+   |
+   | It works like this: a POM may declare a repository to use in resolving certain artifacts.
+   | However, this repository may have problems with heavy traffic at times, so people have mirrored
+   | it to several places.
+   |
+   | That repository definition will have a unique id, so we can create a mirror reference for that
+   | repository, to be used as an alternate download site. The mirror site will be the preferred
+   | server for that repository.
+   |-->
+  <mirrors>
+    <!-- mirror
+     | Specifies a repository mirror site to use instead of a given repository. The repository that
+     | this mirror serves has an ID that matches the mirrorOf element of this mirror. IDs are used
+     | for inheritance and direct lookup purposes, and must be unique across the set of mirrors.
+     |
+    <mirror>
+      <id>mirrorId</id>
+      <mirrorOf>repositoryId</mirrorOf>
+      <name>Human Readable Name for this Mirror.</name>
+      <url>http://my.repository.com/repo/path</url>
+    </mirror>
+     -->
+    <mirror>
+      <id>maven-default-http-blocker</id>
+      <mirrorOf>external:http:*</mirrorOf>
+      <name>Pseudo repository to mirror external repositories initially using HTTP.</name>
+      <url>http://0.0.0.0/</url>
+      <blocked>true</blocked>
+    </mirror>
+    <mirror>
+        <id>alimaven</id>
+        <name>aliyun maven</name>
+        <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+        <mirrorOf>central</mirrorOf>
+    </mirror>
+  </mirrors>
+
+  <!-- profiles
+   | This is a list of profiles which can be activated in a variety of ways, and which can modify
+   | the build process. Profiles provided in the settings.xml are intended to provide local machine-
+   | specific paths and repository locations which allow the build to work in the local environment.
+   |
+   | For example, if you have an integration testing plugin - like cactus - that needs to know where
+   | your Tomcat instance is installed, you can provide a variable here such that the variable is
+   | dereferenced during the build process to configure the cactus plugin.
+   |
+   | As noted above, profiles can be activated in a variety of ways. One way - the activeProfiles
+   | section of this document (settings.xml) - will be discussed later. Another way essentially
+   | relies on the detection of a system property, either matching a particular value for the property,
+   | or merely testing its existence. Profiles can also be activated by JDK version prefix, where a
+   | value of '1.4' might activate a profile when the build is executed on a JDK version of '1.4.2_07'.
+   | Finally, the list of active profiles can be specified directly from the command line.
+   |
+   | NOTE: For profiles defined in the settings.xml, you are restricted to specifying only artifact
+   |       repositories, plugin repositories, and free-form properties to be used as configuration
+   |       variables for plugins in the POM.
+   |
+   |-->
+  <profiles>
+    <!-- profile
+     | Specifies a set of introductions to the build process, to be activated using one or more of the
+     | mechanisms described above. For inheritance purposes, and to activate profiles via <activatedProfiles/>
+     | or the command line, profiles have to have an ID that is unique.
+     |
+     | An encouraged best practice for profile identification is to use a consistent naming convention
+     | for profiles, such as 'env-dev', 'env-test', 'env-production', 'user-jdcasey', 'user-brett', etc.
+     | This will make it more intuitive to understand what the set of introduced profiles is attempting
+     | to accomplish, particularly when you only have a list of profile id's for debug.
+     |
+     | This profile example uses the JDK version to trigger activation, and provides a JDK-specific repo.
+    <profile>
+      <id>jdk-1.4</id>
+
+      <activation>
+        <jdk>1.4</jdk>
+      </activation>
+
+      <repositories>
+        <repository>
+          <id>jdk14</id>
+          <name>Repository for JDK 1.4 builds</name>
+          <url>http://www.myhost.com/maven/jdk14</url>
+          <layout>default</layout>
+          <snapshotPolicy>always</snapshotPolicy>
+        </repository>
+      </repositories>
+    </profile>
+    -->
+
+    <!--
+     | Here is another profile, activated by the system property 'target-env' with a value of 'dev',
+     | which provides a specific path to the Tomcat instance. To use this, your plugin configuration
+     | might hypothetically look like:
+     |
+     | ...
+     | <plugin>
+     |   <groupId>org.myco.myplugins</groupId>
+     |   <artifactId>myplugin</artifactId>
+     |
+     |   <configuration>
+     |     <tomcatLocation>${tomcatPath}</tomcatLocation>
+     |   </configuration>
+     | </plugin>
+     | ...
+     |
+     | NOTE: If you just wanted to inject this configuration whenever someone set 'target-env' to
+     |       anything, you could just leave off the <value/> inside the activation-property.
+     |
+    <profile>
+      <id>env-dev</id>
+
+      <activation>
+        <property>
+          <name>target-env</name>
+          <value>dev</value>
+        </property>
+      </activation>
+
+      <properties>
+        <tomcatPath>/path/to/tomcat/instance</tomcatPath>
+      </properties>
+    </profile>
+    -->
+
+    <profile>
+        <id>jdk-17</id>
+        <activation>
+          <activeByDefault>true</activeByDefault>
+          <jdk>17</jdk>
+        </activation>
+        <properties>
+          <maven.compiler.source>17</maven.compiler.source>
+          <maven.compiler.target>17</maven.compiler.target>
+          <maven.compiler.compilerVersion>17</maven.compiler.compilerVersion>
+        </properties>
+    </profile>
+  </profiles>
+
+  <!-- activeProfiles
+   | List of profiles that are active for all builds.
+   |
+  <activeProfiles>
+    <activeProfile>alwaysActiveProfile</activeProfile>
+    <activeProfile>anotherAlwaysActiveProfile</activeProfile>
+  </activeProfiles>
+  -->
+</settings>
+```
+
+:::
 
 ### 2.4. IDEA 配置本地 Maven 软件
 
@@ -1076,14 +1375,14 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
 通过设置坐标的依赖范围(scope)，可以设置 对应 jar 包的作用范围：编译环境、测试环境、运行环境
 
-| 依赖范围                              | 描述                                                                                                                                                                                                             |
-| ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| <span class='no-wrap'>compile</span>  | 编译依赖范围，scope 元素的缺省值。使用此依赖范围的 Maven 依赖，对于三种 classpath 均有效，即该 Maven 依赖在上述三种 classpath 均会被引入。例如，log4j 在编译、测试、运行过程都是必须的。                         |
-| test                                  | 测试依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath 有效。例如，Junit 依赖只有在测试阶段才需要。                                                                                                       |
-| <span class='no-wrap'>provided</span> | 已提供依赖范围。使用此依赖范围的 Maven 依赖，只对编译 classpath 和测试 classpath 有效。例如，servlet-api 依赖对于编译、测试阶段而言是需要的，但是运行阶段，由于外部容器已经提供，故不需要 Maven 重复引入该依赖。 |
-| <span class='no-wrap'>runtime</span>  | 运行时依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath、运行 classpath 有效。例如，JDBC 驱动实现依赖，其在编译时只需 JDK 提供的 JDBC 接口即可，只有测试、运行阶段才需要实现了 JDBC 接口的驱动。         |
-| system                                | 系统依赖范围，其效果与 provided 的依赖范围一致。其用于添加非 Maven 仓库的本地依赖，通过依赖元素 dependency 中的 systemPath 元素指定本地依赖的路径。鉴于使用其会导致项目的可移植性降低，一般不推荐使用。          |
-| import                                | 导入依赖范围，该依赖范围只能与 dependencyManagement 元素配合使用，其功能是将目标 pom.xml 文件中 dependencyManagement 的配置导入合并到当前 pom.xml 的 dependencyManagement 中。                                   |
+| 依赖范围                                        | 描述                                                                                                                                                                                                             |
+| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <span class='no-wrap text-bold'>compile</span>  | 编译依赖范围，scope 元素的缺省值。使用此依赖范围的 Maven 依赖，对于三种 classpath 均有效，即该 Maven 依赖在上述三种 classpath 均会被引入。例如，log4j 在编译、测试、运行过程都是必须的。                         |
+| <span class='text-bold'>test</span>             | 测试依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath 有效。例如，Junit 依赖只有在测试阶段才需要。                                                                                                       |
+| <span class='no-wrap text-bold'>provided</span> | 已提供依赖范围。使用此依赖范围的 Maven 依赖，只对编译 classpath 和测试 classpath 有效。例如，servlet-api 依赖对于编译、测试阶段而言是需要的，但是运行阶段，由于外部容器已经提供，故不需要 Maven 重复引入该依赖。 |
+| <span class='no-wrap'>runtime</span>            | 运行时依赖范围。使用此依赖范围的 Maven 依赖，只对测试 classpath、运行 classpath 有效。例如，JDBC 驱动实现依赖，其在编译时只需 JDK 提供的 JDBC 接口即可，只有测试、运行阶段才需要实现了 JDBC 接口的驱动。         |
+| system                                          | 系统依赖范围，其效果与 provided 的依赖范围一致。其用于添加非 Maven 仓库的本地依赖，通过依赖元素 dependency 中的 systemPath 元素指定本地依赖的路径。鉴于使用其会导致项目的可移植性降低，一般不推荐使用。          |
+| import                                          | 导入依赖范围，该依赖范围只能与 dependencyManagement 元素配合使用，其功能是将目标 pom.xml 文件中 dependencyManagement 的配置导入合并到当前 pom.xml 的 dependencyManagement 中。                                   |
 
 ### 5.5. Maven 工程依赖下载失败错误解决（重点）
 
@@ -1099,7 +1398,7 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 2.  确保依赖项的版本号与项目对应的版本号匹配，并检查 POM 文件中的依赖项是否正确。
 3.  清除本地 Maven 仓库缓存（lastUpdated 文件），因为只要存在 lastupdated 缓存文件，刷新也不会重新下载。本地仓库中，根据依赖的 gav 属性依次向下查找文件夹，最终删除内部的文件，刷新重新下载即可！
 
-    例如： pom.xml 依赖
+    例如：pom.xml 依赖
 
     ```xml
     <dependency>
@@ -1199,13 +1498,13 @@ Maven 依赖管理是 Maven 软件中最重要的功能之一。Maven 的依赖�
 
 ```xml
 <build>
-    <!--设置要打包的资源位置-->
+    <!-- 设置要打包的资源位置 -->
     <resources>
         <resource>
-            <!--设置资源所在目录-->
+            <!-- 设置资源所在目录 -->
             <directory>src/main/java</directory>
             <includes>
-                <!--设置包含的资源类型-->
+                <!-- 设置包含的资源类型 -->
                 <include>**/*.xml</include>
             </includes>
         </resource>
@@ -1222,7 +1521,7 @@ dependencies 标签下引入开发需要的 jar 包！我们可以在 build/plug
 ```xml
 <build>
   <plugins>
-      <!-- java编译插件，配jdk的编译版本 -->
+      <!-- java 编译插件，配 jdk 的编译版本 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -1232,7 +1531,7 @@ dependencies 标签下引入开发需要的 jar 包！我们可以在 build/plug
           <encoding>UTF-8</encoding>
         </configuration>
       </plugin>
-      <!-- tomcat插件 -->
+      <!-- tomcat 插件 -->
       <plugin>
         <groupId>org.apache.tomcat.maven</groupId>
         <artifactId>tomcat7-maven-plugin</artifactId>
@@ -1334,7 +1633,7 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
       A—>F—>X(version 0.0.2)
 
-      在\<depencies>\</depencies>中，先声明的，路径相同，会优先选择！
+      在 `<depencies></depencies>` 中，先声明的，路径相同，会优先选择！
 
 2.  手动排除
     ```xml
@@ -1343,11 +1642,11 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
       <artifactId>pro01-maven-java</artifactId>
       <version>1.0-SNAPSHOT</version>
       <scope>compile</scope>
-      <!-- 使用excludes标签配置依赖的排除  -->
+      <!-- 使用 excludes 标签配置依赖的排除 -->
       <exclusions>
-        <!-- 在exclude标签中配置一个具体的排除 -->
+        <!-- 在 exclude 标签中配置一个具体的排除 -->
         <exclusion>
-          <!-- 指定要排除的依赖的坐标（不需要写version） -->
+          <!-- 指定要排除的依赖的坐标（不需要写 version） -->
           <groupId>commons-logging</groupId>
           <artifactId>commons-logging</artifactId>
         </exclusion>
@@ -1376,7 +1675,7 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
 1.  继承概念
 
-    Maven 继承是指在 Maven 的项目中，让一个项目从另一个项目中继承配置信息的机制。继承可以让我们在多个项目中共享同一配置信息，简化项目的管理和维护工作。
+    `Maven` 继承是指在 `Maven` 的项目中，让一个项目从另一个项目中继承配置信息的机制。继承可以让我们在多个项目中共享同一配置信息，简化项目的管理和维护工作。
 
 2.  继承作用
 
@@ -1385,15 +1684,15 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
     它的背景是：
 
     - 对一个比较大型的项目进行了模块拆分。
-    - 一个 project 下面，创建了很多个 module。
-    - 每一个 module 都需要配置自己的依赖信息。
+    - 一个 project 下面，创建了很多个 `module`。
+    - 每一个 `module` 都需要配置自己的依赖信息。
 
     它背后的需求是：
 
-    - 在每一个 module 中各自维护各自的依赖信息很容易发生出入，不易统一管理。
-    - 使用同一个框架内的不同 jar 包，它们应该是同一个版本，所以整个项目中使用的框架版本需要统一。
-    - 使用框架时所需要的 jar 包组合（或者说依赖信息组合）需要经过长期摸索和反复调试，最终确定一个可用组合。这个耗费很大精力总结出来的方案不应该在新的项目中重新摸索。
-      通过在父工程中为整个项目维护依赖信息的组合既保证了整个项目使用规范、准确的 jar 包；又能够将以往的经验沉淀下来，节约时间和精力。
+    - 在每一个 `module` 中各自维护各自的依赖信息很容易发生出入，不易统一管理。
+    - 使用同一个框架内的不同 `jar` 包，它们应该是同一个版本，所以整个项目中使用的框架版本需要统一。
+    - 使用框架时所需要的 `jar` 包组合（或者说依赖信息组合）需要经过长期摸索和反复调试，最终确定一个可用组合。这个耗费很大精力总结出来的方案不应该在新的项目中重新摸索。
+      通过在父工程中为整个项目维护依赖信息的组合既保证了整个项目使用规范、准确的 `jar` 包；又能够将以往的经验沉淀下来，节约时间和精力。
 
 3.  继承语法
 
@@ -1405,13 +1704,26 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
         <version>1.0-SNAPSHOT</version>
         <!-- 当前工程作为父工程，它要去管理子工程，所以打包方式必须是 pom -->
         <packaging>pom</packaging>
-
       ```
+
+      <img src='../image/maven-0066.png' alt='' data-fancybox='gallery' style='aspect-ratio:2624/797'/>
+
+      :::tip 提示
+      截图是我自己的写的代码中的截图，和课件中的工程名字不一样，但是意思是一样的！
+
+      另外，其实在父工程中，我们可以不写任何代码，因为它是用来管理子工程的，只写一些配置信息，所以我们其实可以直接将父工程的 `src` 文件夹删除掉。
+      :::
 
     - 子工程
 
+      <img src='../image/maven-0067.png' alt='' data-fancybox='gallery' style='aspect-ratio:1570/1395'/>
+
+      :::tip 提示
+      截图是我自己的写的代码中的截图，只做参考。
+      :::
+
       ```xml
-      <!-- 使用parent标签指定当前工程的父工程 -->
+      <!-- 使用 parent 标签指定当前工程的父工程 -->
       <parent>
         <!-- 父工程的坐标 -->
         <groupId>com.atguigu.maven</groupId>
@@ -1420,7 +1732,7 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
       </parent>
 
       <!-- 子工程的坐标 -->
-      <!-- 如果子工程坐标中的groupId和version与父工程一致，那么可以省略 -->
+      <!-- 如果子工程坐标中的 groupId 和 version 与父工程一致，那么可以省略 -->
       <!-- <groupId>com.atguigu.maven</groupId> -->
       <artifactId>pro04-maven-module</artifactId>
       <!-- <version>1.0-SNAPSHOT</version> -->
@@ -1429,8 +1741,11 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 4.  父工程依赖统一管理
     - 父工程声明版本
       ```xml
-      <!-- 使用dependencyManagement标签配置对依赖的管理 -->
-      <!-- 被管理的依赖并没有真正被引入到工程 -->
+      <!-- 使用 dependencyManagement 标签配置对依赖的管理 -->
+      <!--
+      被管理的依赖并没有真正被引入到工程
+      dependencyManagement 标签中的依赖项不会真正地被引入到父工程中，它的作用是定义依赖版本的统一管理
+      -->
       <dependencyManagement>
         <dependencies>
           <dependency>
@@ -1463,9 +1778,9 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
       ```
     - 子工程引用版本
       ```xml
-      <!-- 子工程引用父工程中的依赖信息时，可以把版本号去掉。  -->
-      <!-- 把版本号去掉就表示子工程中这个依赖的版本由父工程决定。 -->
-      <!-- 具体来说是由父工程的dependencyManagement来决定。 -->
+      <!-- 子工程引用父工程中的依赖信息时，可以把版本号去掉  -->
+      <!-- 把版本号去掉就表示子工程中这个依赖的版本由父工程决定（版本号会自动继承父项目的版本） -->
+      <!-- 具体来说是由父工程的 dependencyManagement 来决定 -->
       <dependencies>
         <dependency>
           <groupId>org.springframework</groupId>
@@ -1494,7 +1809,7 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
 1.  聚合概念
 
-    Maven 聚合是指将多个项目组织到一个父级项目中，以便一起构建和管理的机制。聚合可以帮助我们更好地管理一组相关的子项目，同时简化它们的构建和部署过程。
+    `Maven` 聚合是指将多个项目组织到一个父级项目中，以便一起构建和管理的机制。聚合可以帮助我们更好地管理一组相关的子项目，同时简化它们的构建和部署过程。
 
 2.  聚合作用
     1.  管理多个子项目：通过聚合，可以将多个子项目组织在一起，方便管理和维护。
@@ -1511,8 +1826,11 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
       <artifactId>parent-project</artifactId>
       <packaging>pom</packaging>
       <version>1.0.0</version>
+      <!-- 定义子模块 -->
       <modules>
+        <!-- 子模块 1，这里指定了子模块的目录（相对于父项目的根目录） -->
         <module>child-project1</module>
+        <!-- 子模块 2，指定另一个子模块的目录 -->
         <module>child-project2</module>
       </modules>
     </project>
@@ -1528,21 +1846,21 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
 ① 私服简介
 
-Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内的仓库服务，用来代理位于外部的远程仓库（中央仓库、其他远程公共仓库）。
+`Maven` 私服是一种特殊的 `Maven` 远程仓库，它是架设在局域网内的仓库服务，用来代理位于外部的远程仓库（中央仓库、其他远程公共仓库）。
 
 > 当然也并不是说私服只能建立在局域网，也有很多公司会直接把私服部署到公网，具体还是得看公司业务的性质是否是保密的等等，因为局域网的话只能在公司用，部署到公网的话员工在家里也可以办公使用。
 
-建立了 Maven 私服后，当局域网内的用户需要某个构件时，会按照如下顺序进行请求和下载。
+建立了 `Maven` 私服后，当局域网内的用户需要某个构件时，会按照如下顺序进行请求和下载。
 
-请求本地仓库，若本地仓库不存在所需构件，则跳转到第 2 步；
-请求 Maven 私服，将所需构件下载到本地仓库，若私服中不存在所需构件，则跳转到第 3 步。
-请求外部的远程仓库，将所需构件下载并缓存到 Maven 私服，若外部远程仓库不存在所需构件，则 Maven 直接报错。
+1. 请求本地仓库，若本地仓库不存在所需构件，则跳转到第 2 步；
+2. 请求 `Maven` 私服，将所需构件下载到本地仓库，若私服中不存在所需构件，则跳转到第 3 步。
+3. 请求外部的远程仓库，将所需构件下载并缓存到 `Maven` 私服，若外部远程仓库不存在所需构件，则 `Maven` 直接报错。
 
 此外，一些无法从外部仓库下载到的构件，也能从本地上传到私服供其他人使用。
 
 <img src='../image/maven-0032.png' alt='' data-fancybox='gallery' style='aspect-ratio:973/428'/>
 
-②Maven 私服的优势
+② Maven 私服的优势
 
 1. 节省外网带宽
    消除对外部远程仓库的大量重复请求（会消耗很大量的带宽），降低外网带宽压力。
@@ -1569,11 +1887,27 @@ Maven 私服是一种特殊的 Maven 远程仓库，它是架设在局域网内�
 
 下载地址：https://help.sonatype.com/repomanager3/product-information/download
 
-解压，以管理员身份打开 CMD，进入 bin 目录下，执行./nexus /run 命令启动
+根据自己的电脑版本进行下载，由于我是 windows 系统，所以下载的是 windows 版本的
+
+<img src='../image/maven-0069.png' alt='' data-fancybox='gallery' style='aspect-ratio:2134/934'/>
+
+下载完成后，解压，以管理员身份打开 CMD，进入 bin 目录下，执行 `./nexus /run` 命令启动
+
+> 注意：这里下载的 nexus 版本是 `3.61.0-02`（视频教程中使用的版本也是该版本） 该版本对应的启动命令是 `./nexus /run`，最新版本的 nexus 使用该启动命令不正确。
+>
+> `3.61.0-02` 版本的下载地址：https://help.sonatype.com/en/download-archives---repository-manager-3.html
+>
+> <img src='../image/maven-0073.png' alt='' data-fancybox='gallery' style='aspect-ratio:3717/1942'/>
+
+<img src='../image/maven-0070.png' alt='' data-fancybox='gallery' style='aspect-ratio:1757/1098'/>
+
+<img src='../image/maven-0071.png' alt='' data-fancybox='gallery' style='aspect-ratio:1920/990'/>
+
+<img src='../image/maven-0072.png' alt='' data-fancybox='gallery' style='aspect-ratio:1920/990'/>
 
 访问 Nexus 首页
 
-首页地址：http://localhost:8081/，8081 为默认端口号
+首页地址：http://localhost:8081/ 8081 为默认端口号
 
 <img src='../image/maven-0007.png' alt='' data-fancybox='gallery' style='aspect-ratio:705/514'/>
 
