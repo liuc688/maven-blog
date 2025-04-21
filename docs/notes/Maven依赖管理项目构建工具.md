@@ -1930,6 +1930,8 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
 <img src='../image/maven-0049.png' alt='' data-fancybox='gallery' style='aspect-ratio:716/328'/>
 
+> 这里我将密码改成了 admin
+
 匿名登录，启用还是禁用？由于启用匿名登录后，后续操作比较简单，这里我们演示禁用匿名登录的操作：
 
 <img src='../image/maven-0042.png' alt='' data-fancybox='gallery' style='aspect-ratio:698/348'/>
@@ -1961,14 +1963,14 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 
 ### 8.5. 通过 Nexus 下载 jar 包
 
-修改本地 maven 的核心配置文件 settings.xml，设置新的本地仓库地址
+修改本地 `maven` 的核心配置文件 `settings.xml`，设置新的本地仓库地址：
 
 ```xml
 <!-- 配置一个新的 Maven 本地仓库 -->
 <localRepository>D:/maven-repository-new</localRepository>
 ```
 
-把我们原来配置阿里云仓库地址的 mirror 标签改成下面这样：
+把我们原来配置阿里云仓库地址的 `mirror` 标签改成下面这样（表示将来的资源会从指定的私服中下载）：
 
 ```xml
 <mirror>
@@ -1979,25 +1981,25 @@ maven 自动解决依赖冲突问题能力，会按照自己的原则，进行�
 </mirror>
 ```
 
-这里的 url 标签是这么来的：
+这里的 `url` 标签是这么来的：
 
 <img src='../image/maven-0052.png' alt='' data-fancybox='gallery' style='aspect-ratio:777/280'/>
 
 <img src='../image/maven-0044.png' alt='' data-fancybox='gallery' style='aspect-ratio:1062/388'/>
 
-把上图中看到的地址复制出来即可。如果我们在前面允许了匿名访问，到这里就够了。但如果我们禁用了匿名访问，那么接下来我们还要继续配置 settings.xml：
+把上图中看到的地址复制出来即可。如果我们在前面允许了匿名访问，到这里就够了。但如果我们禁用了匿名访问，那么接下来我们还要继续配置 `settings.xml`：
 
 ```xml
 <server>
   <id>nexus-mine</id>
   <username>admin</username>
-  <password>atguigu</password>
+  <password>admin</password>
 </server>
 ```
 
 这里需要**格外注意**：server 标签内的 id 标签值必须和 mirror 标签中的 id 值一样。
 
-找一个用到框架的 Maven 工程，执行命令：
+找一个用到框架的 `Maven` 工程，执行命令：
 
 ```sh
 mvn clean compile
@@ -2005,16 +2007,18 @@ mvn clean compile
 
 下载过程日志：
 
-> Downloading from nexus-mine: http://localhost:8081/repository/maven-public/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.pom
-> Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.pom (2.6 kB at 110 kB/s)
-> Downloading from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/json-smart/2.3/json-smart-2.3.pom
-> Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/json-smart/2.3/json-smart-2.3.pom (9.0 kB at 376 kB/s)
-> Downloading from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/minidev-parent/2.3/minidev-parent-2.3.pom
-> Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/minidev-parent/2.3/minidev-parent-2.3.pom (8.5 kB at 404 kB/s)
-> Downloading from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/accessors-smart/1.2/accessors-smart-1.2.pom
-> Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/accessors-smart/1.2/accessors-smart-1.2.pom (12 kB at 463 kB/s)
+```sh
+Downloading from nexus-mine: http://localhost:8081/repository/maven-public/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.pom
+Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/com/jayway/jsonpath/json-path/2.4.0/json-path-2.4.0.pom (2.6 kB at 110 kB/s)
+Downloading from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/json-smart/2.3/json-smart-2.3.pom
+Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/json-smart/2.3/json-smart-2.3.pom (9.0 kB at 376 kB/s)
+Downloading from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/minidev-parent/2.3/minidev-parent-2.3.pom
+Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/minidev-parent/2.3/minidev-parent-2.3.pom (8.5 kB at 404 kB/s)
+Downloading from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/accessors-smart/1.2/accessors-smart-1.2.pom
+Downloaded from nexus-mine: http://localhost:8081/repository/maven-public/net/minidev/accessors-smart/1.2/accessors-smart-1.2.pom (12 kB at 463 kB/s)
+```
 
-下载后，Nexus 服务器上就有了 jar 包：
+下载后 Nexus 服务器上就有了 jar 包：
 
 <img src='../image/maven-0053.png' alt='' data-fancybox='gallery' style='aspect-ratio:286/684'/>
 
@@ -2048,13 +2052,26 @@ maven 工程中配置：
 mvn deploy
 ```
 
+```sh
 > Uploading to nexus-mine: http://localhost:8081/repository/maven-snapshots/com/atguigu/demo/demo07-redis-data-provider/1.0-SNAPSHOT/maven-metadata.xml
 > Uploaded to nexus-mine: http://localhost:8081/repository/maven-snapshots/com/atguigu/demo/demo07-redis-data-provider/1.0-SNAPSHOT/maven-metadata.xml (786 B at 19 kB/s)
 > Uploading to nexus-mine: http://localhost:8081/repository/maven-snapshots/com/atguigu/demo/demo07-redis-data-provider/maven-metadata.xml
 > Uploaded to nexus-mine: http://localhost:8081/repository/maven-snapshots/com/atguigu/demo/demo07-redis-data-provider/maven-metadata.xml (300 B at 6.5 kB/s)
 > [INFO] ------------------------------------------------------------------------
 > [INFO] Reactor Summary:
-> [INFO] > [INFO] demo-imperial-court-ms-show 1.0-SNAPSHOT ........... SUCCESS [ 1.875 s] > [INFO] demo09-base-entity ................................. SUCCESS [ 21.883 s] > [INFO] demo10-base-util ................................... SUCCESS [ 0.324 s] > [INFO] demo08-base-api .................................... SUCCESS [ 1.171 s] > [INFO] demo01-imperial-court-gateway ...................... SUCCESS [ 0.403 s] > [INFO] demo02-user-auth-center ............................ SUCCESS [ 2.932 s] > [INFO] demo03-emp-manager-center .......................... SUCCESS [ 0.312 s] > [INFO] demo04-memorials-manager-center .................... SUCCESS [ 0.362 s] > [INFO] demo05-working-manager-center ...................... SUCCESS [ 0.371 s] > [INFO] demo06-mysql-data-provider ......................... SUCCESS [ 6.779 s] > [INFO] demo07-redis-data-provider 1.0-SNAPSHOT ............ SUCCESS [ 0.273 s]
+> [INFO]
+> [INFO] demo-imperial-court-ms-show 1.0-SNAPSHOT ........... SUCCESS [ 1.875 s]
+> [INFO] demo09-base-entity ................................. SUCCESS [ 21.883 s]
+> [INFO] demo10-base-util ................................... SUCCESS [ 0.324 s]
+> [INFO] demo08-base-api .................................... SUCCESS [ 1.171 s]
+> [INFO] demo01-imperial-court-gateway ...................... SUCCESS [ 0.403 s]
+> [INFO] demo02-user-auth-center ............................ SUCCESS [ 2.932 s]
+> [INFO] demo03-emp-manager-center .......................... SUCCESS [ 0.312 s]
+> [INFO] demo04-memorials-manager-center .................... SUCCESS [ 0.362 s]
+> [INFO] demo05-working-manager-center ...................... SUCCESS [ 0.371 s]
+> [INFO] demo06-mysql-data-provider ......................... SUCCESS [ 6.779 s]
+> [INFO] demo07-redis-data-provider 1.0-SNAPSHOT ............ SUCCESS [ 0.273 s]
+```
 
 <img src='../image/maven-0054.png' alt='' data-fancybox='gallery' style='aspect-ratio:365/457'/>
 
@@ -2123,7 +2140,7 @@ pom.xml 配置：
     <groupId>com.atguigu</groupId>
     <artifactId>micro-shop</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <!--知识点：父工程的打包方式为pom-->
+    <!-- 知识点：父工程的打包方式为 pom -->
     <packaging>pom</packaging>
 
     <properties>
@@ -2139,14 +2156,14 @@ pom.xml 配置：
     <!-- 依赖管理 -->
     <dependencyManagement>
         <dependencies>
-            <!-- spring-context会依赖传递core/beans -->
+            <!-- spring-context 会依赖传递 core/beans -->
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-context</artifactId>
                 <version>${spring.version}</version>
             </dependency>
 
-            <!-- jackson-databind会依赖传递core/annotations -->
+            <!-- jackson-databind 会依赖传递 core/annotations -->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
                 <artifactId>jackson-databind</artifactId>
@@ -2173,7 +2190,7 @@ pom.xml 配置：
 
     <!-- 统一更新子工程打包插件-->
     <build>
-        <!-- jdk17 和 war包版本插件不匹配 -->
+        <!-- jdk17 和 war 包版本插件不匹配 -->
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -2211,7 +2228,7 @@ pom.xml 配置：
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>common-service</artifactId>
-    <!--知识点：打包方式默认就是jar，因此可以省略-->
+    <!-- 知识点：打包方式默认就是 jar，因此可以省略 -->
     <packaging>jar</packaging>
 
     <properties>
@@ -2221,22 +2238,22 @@ pom.xml 配置：
     </properties>
 
     <dependencies>
-        <!-- 配置spring-context，继承父工程版本，自动传递 core / beans -->
+        <!-- 配置 spring-context，继承父工程版本，自动传递 core / beans -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
         </dependency>
-        <!-- 配置jackson-databind，继承父工程版本，自动传递 core / annotations -->
+        <!-- 配置 jackson-databind，继承父工程版本，自动传递 core / annotations -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
         </dependency>
-        <!-- 配置commons-io，继承父工程版本 -->
+        <!-- 配置 commons-io，继承父工程版本 -->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
         </dependency>
-        <!-- 配置junit，继承父工程版本 -->
+        <!-- 配置 junit，继承父工程版本 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -2270,7 +2287,7 @@ pom.xml 配置：
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>user-service</artifactId>
-    <!-- web工程打包方式为war -->
+    <!-- web 工程打包方式为 war -->
     <packaging>war</packaging>
 
     <properties>
@@ -2280,7 +2297,7 @@ pom.xml 配置：
     </properties>
 
     <dependencies>
-        <!-- 配置common-service，所需依赖会传递到当前工程（仅限compile范围） -->
+        <!-- 配置 common-service，所需依赖会传递到当前工程（仅限 compile 范围） -->
         <dependency>
             <groupId>com.atguigu</groupId>
             <artifactId>common-service</artifactId>
@@ -2316,7 +2333,7 @@ pom.xml 配置：
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>order-service</artifactId>
-    <!-- web工程打包方式为war -->
+    <!-- web 工程打包方式为 war -->
     <packaging>war</packaging>
 
     <properties>
@@ -2326,7 +2343,7 @@ pom.xml 配置：
     </properties>
 
     <dependencies>
-        <!-- 配置common-service，所需依赖会传递到当前工程（仅限compile范围） -->
+        <!-- 配置 common-service，所需依赖会传递到当前工程（仅限 compile 范围） -->
         <dependency>
             <groupId>com.atguigu</groupId>
             <artifactId>common-service</artifactId>
