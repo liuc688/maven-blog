@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: '尚硅谷 Maven'
-  text: '基于 VitePress 搭建的个人技术博客'
+  # text: '基于 VitePress 搭建的个人技术博客'
   tagline: '记录并总结尚硅谷 Maven 课程的核心知识与实践经验'
   actions:
     - theme: brand
